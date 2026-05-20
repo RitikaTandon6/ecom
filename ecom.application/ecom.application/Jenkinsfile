@@ -13,12 +13,12 @@ pipline
     stage('Build')
     {
       steps {
-        bat 'mvn clean package -DskipsTests'
+        bat 'mvn clean package -DskipsTests ecom.application/ecom.application/pom.xml'
       }
     }
      stage('Archive JAR') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar', 
+                archiveArtifacts artifacts: 'ecom.application/ecom.application/target/*.jar', 
                                  fingerprint: true
             }
         }
