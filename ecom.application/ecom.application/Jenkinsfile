@@ -1,0 +1,33 @@
+pipline
+{
+  agent { label 'java-maven'}
+  stages
+  {
+    stage('Checkout')
+    {
+      steps
+      {
+        checkout scm
+      }
+    }
+    stage('Build')
+    {
+      steps {
+        bat 'mvn clean package -DskipsTests'
+      }
+    }
+     stage('Archive JAR') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.jar', 
+                                 fingerprint: true
+            }
+        }
+    
+  }
+  post
+  {
+    success{ echo 'Build succesfull' }
+    
+      failure{ echo 'Build failed' }      
+}
+}
