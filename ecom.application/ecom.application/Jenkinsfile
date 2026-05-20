@@ -1,33 +1,31 @@
-pipeline
-{
-  agent { label 'java-maven'}
-  stages
-  {
-    stage('Checkout')
-    {
-      steps
-      {
-        checkout scm
-      }
-    }
-    stage('Build')
-    {
-      steps {
-        bat 'mvn clean package -DskipsTests ecom.application/ecom.application/pom.xml'
-      }
-    }
-     stage('Archive JAR') {
+pipeline {
+    agent { label 'java-maven' }
+
+    stages {
+
+        stage('Checkout') {
             steps {
-                archiveArtifacts artifacts: 'ecom.application/ecom.application/target/*.jar', 
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean package -DskipTests -f ecom.application/ecom.application/pom.xml'
+            }
+        }
+
+        stage('Archive JAR') {
+            steps {
+                archiveArtifacts artifacts: 'ecom.application/ecom.application/target/*.jar',
                                  fingerprint: true
             }
         }
-    
-  }
-  post
-  {
-    success{ echo 'Build succesfull' }
-    
-      failure{ echo 'Build failed' }      
-}
+
+    }
+
+    post {
+        success { echo 'Build successful!' }
+        failure { echo 'Build failed!' }
+    }
 }
