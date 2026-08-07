@@ -28,8 +28,6 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-	</properties>
-	<properties>
   <sonar.organization>ritikatandon6</sonar.organization>
 </properties>
 	<dependencies>
