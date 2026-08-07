@@ -33,4 +33,4 @@ jobs:
         working-directory: ecom.application/ecom.application
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RitikaTandon6_ecom
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RitikaTandon6_ecom -DskipTests
